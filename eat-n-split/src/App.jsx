@@ -24,6 +24,13 @@ function App() {
 
   function handleSplit(value) {
     console.log(value);
+    setData(
+      data.map((item) =>
+        item === selected
+          ? { ...item, balance: Math.abs(item.balance + value) }
+          : item
+      )
+    );
   }
 
   return (
@@ -42,7 +49,13 @@ function App() {
           {isOpen ? 'Close' : 'Add friend'}
         </Button>
       </div>
-      {selected && <Split selected={selected} onSplit={handleSplit} />}
+      {selected && (
+        <Split
+          selected={selected}
+          onSplit={handleSplit}
+          setSelected={setSelected}
+        />
+      )}
     </div>
   );
 }

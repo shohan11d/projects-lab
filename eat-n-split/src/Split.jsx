@@ -1,15 +1,16 @@
 import { useState } from 'react';
 import { Input, Button } from './assets/styled';
 
-export function Split({ selected, onSplit }) {
+export function Split({ selected, onSplit, setSelected }) {
   const [bill, setBill] = useState('');
   const [myBill, setMyBill] = useState('');
 
   const [option, setOption] = useState('you');
   const friendsBill = bill - myBill;
   function billSplit() {
-    if (option === 'you' && bill) return onSplit(friendsBill);
-    if (option === 'friend' && bill) return onSplit(myBill);
+    if (!bill || !myBill) return;
+    option === 'you' ? onSplit(-friendsBill) : onSplit(myBill);
+    setSelected('');
   }
   return (
     <div className="split">

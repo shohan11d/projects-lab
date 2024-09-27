@@ -5,9 +5,13 @@ import { AddFriend } from './AddFriend';
 import { Split } from './Split';
 
 const init = [
-  { name: 'Clark', balance: 7, image: `url` },
-  { name: 'Sarah', balance: 20, image: `url` },
-  { name: 'Anthony', balance: 0, image: `url` },
+  {
+    name: 'Clark',
+    balance: 7,
+    image: '/img1.jpeg',
+  },
+  { name: 'Sarah', balance: -20, image: '/img2.jpeg' },
+  { name: 'Anthony', balance: 0, image: '/img3.jpeg' },
 ];
 
 function App() {
@@ -26,9 +30,7 @@ function App() {
     console.log(value);
     setData(
       data.map((item) =>
-        item === selected
-          ? { ...item, balance: Math.abs(item.balance + value) }
-          : item
+        item === selected ? { ...item, balance: item.balance + value } : item
       )
     );
   }
@@ -44,7 +46,7 @@ function App() {
             selected={selected}
           />
         ))}
-        {isOpen ? <AddFriend /> : ''}
+        {isOpen ? <AddFriend setData={setData} /> : ''}
         <Button onClick={() => setIsOpen((isOpen) => !isOpen)}>
           {isOpen ? 'Close' : 'Add friend'}
         </Button>
@@ -61,3 +63,4 @@ function App() {
 }
 
 export default App;
+

@@ -7,6 +7,7 @@ export function Split({ selected, onSplit, setSelected }) {
 
   const [option, setOption] = useState('you');
   const friendsBill = bill - myBill;
+
   function billSplit() {
     if (!bill || !myBill) return;
     option === 'you' ? onSplit(-friendsBill) : onSplit(myBill);

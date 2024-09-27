@@ -5,13 +5,30 @@ export function Friend({ friend, onAdd, selected }) {
     <div className="container">
       <div className={friend === selected ? 'tab' : 'lab'}>
         <div className="avater">
-          <img src="" alt="" />
+          <img src={friend.image} className="img" alt="" />
         </div>
         <div>
           <h3>{friend.name}</h3>
-          {friend.balance > 0
-            ? `You owe ${friend.name} ${friend.balance}$`
-            : `${friend.name} owes you ${friend.balance}$`}
+          {/* {friend.balance > 0 ? (
+            <p className="red">
+              `You owe ${friend.name} ${friend.balance}$`
+            </p>
+          ) : (
+            <p className="green">
+              {friend.name} owes you ${friend.balance}
+            </p>
+          )} */}
+          {friend.balance > 0 && (
+            <p className="red">
+              You owe {friend.name} {Math.abs(friend.balance)}$
+            </p>
+          )}
+          {friend.balance < 0 && (
+            <p className="green">
+              {friend.name} owes you {Math.abs(friend.balance)}$
+            </p>
+          )}
+          {friend.balance === 0 && <p className="">You guys are even</p>}
         </div>
         <div>
           <Button onClick={() => onAdd(friend)}>

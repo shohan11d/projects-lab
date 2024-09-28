@@ -56,11 +56,12 @@ function App() {
           selected={selected}
           onSplit={handleSplit}
           setSelected={setSelected}
+          key={crypto.randomUUID()}
         />
       )}
     </div>
   );
 }
 
-export default App;
 
+export default App;

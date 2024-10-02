@@ -4,11 +4,12 @@ import { Logo } from "./components/Logo";
 import { Results } from "./components/Results";
 import { Search } from "./components/Search";
 import Box from "./Box";
-
+import Main from "./components/Main";
+import { MovieList } from "./components/MovieList";
 const tempMovieData = [
   {
     imdbID: "tt1375666",
-    Title: "Inception",
+    Title: "Inceptiown",
     Year: "2010",
     Poster:
       "https://m.media-amazon.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_SX300.jpg",
@@ -62,30 +63,16 @@ function App() {
         <Search />
         <Results />
       </Header>
-      <main className="grid gap-5 p-6 md:grid-cols-2 md:gap-5">
+      <Main>
         <Box>
           <MovieList query={query} />
         </Box>
         <Box>
           <MovieList query={query} />
         </Box>
-      </main>
+      </Main>
     </>
   );
 }
 
-function MovieList({ query }) {
-  return (
-    <div>
-      {query.map((movie) => (
-        <Movie movie={movie} />
-      ))}
-    </div>
-  );
-}
-
 export default App;
-
-function Movie({ movie }) {
-  return <p>{movie.Title}</p>;
-}

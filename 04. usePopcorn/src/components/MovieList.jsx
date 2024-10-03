@@ -3,7 +3,7 @@ export function MovieList({ query }) {
   return (
     <div className="grid gap-4 p-4">
       {query.map((movie) => (
-        <Movie movie={movie} />
+        <Movie movie={movie} key={crypto.randomUUID()} />
       ))}
     </div>
   );

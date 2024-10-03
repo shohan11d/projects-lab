@@ -3,9 +3,11 @@ import Header from "./components/Header";
 import { Logo } from "./components/Logo";
 import { Results } from "./components/Results";
 import { Search } from "./components/Search";
-import Box from "./Box";
+import Box from "./components/Box";
 import Main from "./components/Main";
 import { MovieList } from "./components/MovieList";
+import { WatchedSummary } from "./components/WatchedSummary";
+import WatchedList from "./components/WatchedList";
 const tempMovieData = [
   {
     imdbID: "tt1375666",
@@ -68,7 +70,10 @@ function App() {
           <MovieList query={query} />
         </Box>
         <Box>
-          <MovieList query={query} />
+          <div className="flex flex-col gap-4">
+            <WatchedSummary query={query} />
+            <WatchedList query={query} />
+          </div>
         </Box>
       </Main>
     </>

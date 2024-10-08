@@ -1,3 +1,3 @@
-export function Results() {
-  return <h1 className="text-xl">Found 0{} movies</h1>;
+export function Results({ movieData }) {
+  return <h1 className="text-xl">Found {movieData?.length} movies</h1>;
 }

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useDebugValue, useEffect, useState } from "react";
 import Header from "./components/Header";
 import { Logo } from "./components/Logo";
 import { Results } from "./components/Results";
@@ -57,22 +57,44 @@ const tempWatchedData = [
 
 function App() {
   const [query, setQuery] = useState(tempMovieData);
+  const [search, setSearch] = useState("inception");
+  const [movieData, setMovieData] = useState([]);
+  const [selected, setSelected] = useState('')
 
+  const KEY = "2f74e8e2";
+
+  useEffect(
+    function () {
+      async function fetchData() {
+        const url = `http://www.omdbapi.com/?apikey=${KEY}&s=${search}`;
+
+        try {
+          const response = await fetch(url);
+          const result = await response.json();
+          setMovieData(result.Search);
+        } catch (error) {
+          console.error(error);
+        }
+      }
+      fetchData();
+    },
+    [search],
+  );
   return (
     <>
       <Header>
         <Logo />
-        <Search />
-        <Results />
+        <Search search={search} setSearch={setSearch} />
+        <Results movieData={movieData}/>
       </Header>
       <Main>
         <Box>
-          <MovieList query={query} />
+          <MovieList  movieData={movieData} setSelected={setSelected}/>
         </Box>
         <Box>
           <div className="flex flex-col gap-4">
-            <WatchedSummary query={query} />
-            <WatchedList query={query} />
+           {!selected && <WatchedSummary query={query} movieData={movieData}/> }  
+            {selected && <WatchedList query={query} movieData={movieData} selected={selected } KEY={KEY} />}
           </div>
         </Box>
       </Main>

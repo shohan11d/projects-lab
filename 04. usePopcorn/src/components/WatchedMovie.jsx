@@ -1,4 +1,7 @@
-function WatchedMovie({ movie }) {
+import { useEffect, useState } from "react";
+
+function WatchedMovie({ movie, selected, KEY }) {
+  
   return (
     <>
       <div className="grid grid-cols-2 gap-4">

@@ -34,17 +34,16 @@ function WatchedList({ query, selected, KEY }) {
   return (
     <div>
       <div className="">
-        <img src={poster} width="120px"  />
-        <h1 className="text-xl">{title}</h1>
-        <div className="grid grid-cols-2 ">
+        <img src={poster} width="120px" />
+        <h1 className="text-2xl font-bold">{title}</h1>
+        <div className="pt-4">
+          <p>{lang}</p>
 
-        <p>{country}</p>
-        <p className="">{year}</p>
-        <p>{lang}</p>
-        <p>{released}</p>
+          <p>{country}</p>
+          <p>{released}</p>
         </div>
       </div>
-      <p>{plot}</p>
+      <p className="pt-4">{plot}</p>
     </div>
   );
 }

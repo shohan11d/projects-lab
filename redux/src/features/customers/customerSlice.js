@@ -1,7 +1,7 @@
 const initialState = {
-   fullName: '',
-   nationalID: '',
-   createdAt: '',
+  fullName: "",
+  nationalID: "",
+  createdAt: "",
 };
 export default function customerReducer(state = initialState, action) {
    switch (action.type) {

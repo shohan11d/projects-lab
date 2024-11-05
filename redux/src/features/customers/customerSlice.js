@@ -1,15 +1,31 @@
-function deposit(amount) {
-   return { type: 'account/deposit', payload: amount };
+const initialState = {
+   fullName: '',
+   nationalID: '',
+   createdAt: '',
+};
+export default function customerReducer(state = initialState, action) {
+   switch (action.type) {
+      case 'customer/createCustomer':
+         return {
+            ...state,
+            fullName: action.payload.fullName,
+            nationalID: action.payload.nationalID,
+            createdAt: action.payload.createdAt,
+         };
+      case 'customer/updateName':
+         return { ...state, fullName: action.payload };
+      default:
+         return state;
+   }
 }
-function withdraw(amount) {
-   return { type: 'account/withdraw', payload: amount };
-}
-function requestLoan(amount, purpose) {
+
+export function createCustomer(fullName, nationalID) {
    return {
-      type: 'account/requestLoan',
-      payload: { amount, purpose },
+      type: 'customer/createCustomer',
+      payload: { fullName, nationalID, createdAt: new Date().toISOString() },
    };
 }
-function payLoan() {
-   return { type: 'account/payLoan' };
+
+export function updateName(fullName) {
+   return { type: 'customer/updateName', payload: fullName };
 }
